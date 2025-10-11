@@ -23,15 +23,15 @@ graph TD
         API[<fa:fa-chart-line> API yfinance]:::source
     end
 
-    subgraph "Aplicação Local (Python)"
+    subgraph "Aplicação Local Python"
         Extractor[<fa:fa-download> extractor.py]:::local
         Transformer[<fa:fa-cogs> transformer.py]:::local
         Dashboard[<fa:fa-desktop> app.py]:::local
     end
     
-    subgraph "Nuvem (Azure)"
-        ADLS_Raw[<fa:fa-database> Azure Data Lake (Zona Bruta)]:::azure
-        ADLS_Processed[<fa:fa-check-circle> Azure Data Lake (Zona Processada)]:::azure
+    subgraph "Nuvem Azure"
+        ADLS_Raw[<fa:fa-database> Azure Data Lake Zona Bruta]:::azure
+        ADLS_Processed[<fa:fa-check-circle> Azure Data Lake Zona Processada]:::azure
     end
 
     %% --- Conexões e Fluxo de Dados ---
