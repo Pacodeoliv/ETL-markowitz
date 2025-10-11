@@ -1,0 +1,16 @@
+# Ambiente Virtual do Poetry
+.venv/
+
+# Cache do Python
+__pycache__/
+*.pyc
+
+# Pasta de dados (não versionamos os dados, apenas o código)
+data/
+
+# Cache do yfinance (se aplicável)
+.cache/
+
+# Arquivos de IDEs
+.vscode/
+.idea/
