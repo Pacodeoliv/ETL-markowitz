@@ -119,4 +119,4 @@ ETL-markowitz/
 
 O projeto resulta em um dashboard web interativo que apresenta a alocação de ativos recomendada para maximizar o retorno ajustado ao risco, juntamente com as métricas de performance esperadas para este portfólio.
 
-*(Sugestão: Adicione aqui um screenshot do seu dashboard final!)*
+![Image](https://github.com/user-attachments/assets/60e36b3b-f68a-4250-aadd-cdd911b57529)
