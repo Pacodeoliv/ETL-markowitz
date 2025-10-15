@@ -17,6 +17,7 @@ graph TD
     classDef azure fill:#dae8fc,stroke:#6c8ebf,stroke-width:2px;
     classDef local fill:#e2f0d9,stroke:#5a8a47,stroke-width:2px;
     classDef source fill:#f5f5f5,stroke:#666,stroke-width:2px;
+    classDef helper fill:#fcf8e3,stroke:#8a6d3b,stroke-width:1px,stroke-dasharray: 5 5;
 
     %% --- Definição dos Componentes ---
     subgraph "Fonte de Dados"
@@ -27,6 +28,11 @@ graph TD
         Extractor[<fa:fa-download> extractor.py]:::local
         Transformer[<fa:fa-cogs> transformer.py]:::local
         Dashboard[<fa:fa-desktop> app.py]:::local
+        
+        subgraph "Módulos de Suporte src/etl_markowitz"
+            Connector[azure_connector.py]:::helper
+            Settings[settings.py]:::helper
+        end
     end
     
     subgraph "Nuvem Azure"
@@ -34,13 +40,20 @@ graph TD
         ADLS_Processed[<fa:fa-check-circle> Azure Data Lake Zona Processada]:::azure
     end
 
-    %% --- Conexões e Fluxo de Dados ---
+    %% --- Conexões de Dependência Interna ---
+    Settings -.-> Extractor
+    Settings -.-> Transformer
+    Connector -.-> Extractor
+    Connector -.-> Transformer
+    Connector -.-> Dashboard
+
+    %% --- Conexões do Fluxo de Dados Principal ---
     API -- 1. Extrai dados --> Extractor
-    Extractor -- 2. Carrega dados brutos --> ADLS_Raw
-    ADLS_Raw -- 3. Lê dados brutos --> Transformer
+    Extractor -- 2. Carrega dados brutos via Conector --> ADLS_Raw
+    ADLS_Raw -- 3. Lê dados brutos via Conector --> Transformer
     Transformer -- 4. Processa e calcula portfólio --> Transformer
-    Transformer -- 5. Carrega resultados --> ADLS_Processed
-    ADLS_Processed -- 6. Lê resultados para visualização --> Dashboard
+    Transformer -- 5. Carrega resultados via Conector --> ADLS_Processed
+    ADLS_Processed -- 6. Lê resultados via Conector --> Dashboard
 ```
 
 ## 🛠️ Tecnologias Utilizadas
