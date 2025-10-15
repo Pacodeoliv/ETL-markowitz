@@ -60,15 +60,18 @@ graph TD
 ETL-markowitz/
 ├── src/
 │   └── etl_markowitz/
-│       ├── __init__.py
-│       ├── extractor.py      # Script para Extrair (E) e Carregar (L) dados brutos
-│       └── transformer.py    # Script para Transformar (T) os dados
-├── .env                      # Arquivo local com as credenciais do Azure (não versionado)
-├── .gitignore                # Arquivos e pastas a serem ignorados pelo Git
-├── app.py                    # Aplicação principal do dashboard Streamlit
-├── poetry.lock               # Arquivo de lock para dependências determinísticas
-├── pyproject.toml            # Arquivo de configuração do projeto e dependências
-└── README.md                 # Documentação do projeto
+│       ├── __init__.py           # Torna a pasta um "pacote" Python, permitindo importações
+│       ├── azure_connector.py    # Funções para upload e download do Azure Data Lake
+│       ├── extractor.py          # Lógica de extração de dados da API yfinance
+│       ├── settings.py           # Arquivo central de configurações (tickers, datas, nomes de containers)
+│       └── transformer.py        # Lógica de transformação e otimização de portfólio (Markowitz)
+├── tests/                        # Pasta para futuros testes unitários do projeto
+├── .env                          # Arquivo local com as credenciais do Azure (NÃO DEVE IR PARA O GITHUB)
+├── .gitignore                    # Define quais arquivos e pastas o Git não deve versionar
+├── app.py                        # Aplicação principal do dashboard Streamlit (Visualização)
+├── poetry.lock                   # Versões exatas de todas as dependências (gerenciado pelo Poetry)
+├── pyproject.toml                # Configuração do projeto e dependências principais (gerenciado pelo Poetry)
+└── README.md                     # Documentação do projeto
 ```
 
 ## 🚀 Como Executar o Projeto Localmente
